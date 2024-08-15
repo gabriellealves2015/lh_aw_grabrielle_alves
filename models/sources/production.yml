@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: production
+    description: >
+      Returns production information
+    schema: sap_adw
+
+    tables:
+
+      - name: product
+        description: >
+          Main table of product information.
+
+        tests:
+          - unique:
+              column_name: productid
+
+        columns:
+          - name: productid
+            description: >
+              Unique product identifier.
+            tests:
+              - not_null
+
+          - name: name
+            description: >
+              Product name.
+            tests:
+              - not_null
+      
+      - name: productdescription
+        description: >
+          Description of products.
+
+        tests:
+          - unique:
+              column_name: productdescriptionid
+
+        columns:
+          - name: productdescriptionid
+            description: >
+              Unique product description identifier.
+            tests:
+              - not_null
+
+          - name: description
+            description: >
+              Product description.
+            tests:
+              - not_null
