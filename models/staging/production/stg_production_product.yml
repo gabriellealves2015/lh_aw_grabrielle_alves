@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_production_product
+    description: >
+      Table with base product information, start sold date, stock, etc.
+
+    columns:
+      - name: id_product
+        description: >
+          Id of product.
+        tests:
+          - not_null
+          - unique
+      
+      - name: name
+        description: >
+          Name of product.
+        tests:
+          - not_null
+
+
+      
