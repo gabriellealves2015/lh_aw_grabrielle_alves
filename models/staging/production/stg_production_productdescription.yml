@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_production_productdescription
+    description: >
+      Table product description information.
+
+    columns:
+      - name: id_product_description
+        description: >
+          Id of product description.
+        tests:
+          - not_null
+          - unique
+      
+      - name: description
+        description: >
+          Description of product.
+        tests:
+          - not_null
+
+
+      
