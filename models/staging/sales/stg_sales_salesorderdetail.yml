@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_sales_salesorderdetail
+    description: >
+      Table with information on products included in orders, returns quantity sold, unit price, discount, etc.
+
+    columns:
+      - name: id_sales_order_detail
+        description: >
+          Id of sales order detail.
+        tests:
+          - not_null
+          - unique
+      
+      - name: id_sales_order
+        description: >
+          Id of sales order.
+        tests:
+          - not_null
+
+
+      
