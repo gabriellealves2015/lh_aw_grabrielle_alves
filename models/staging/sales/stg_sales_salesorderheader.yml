@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_sales_salesorderheader
+    description: >
+      Table that gathers basic information about orders.
+
+    columns:
+      - name: id_sales_order
+        description: >
+          Id of sales order.
+        tests:
+          - not_null
+          - unique
+
+      - name: id_customer
+        description: >
+          Id of Customer
+        tests:
+          - not_null
