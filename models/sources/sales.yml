@@ -1,0 +1,51 @@
+version: 2
+
+sources:
+  - name: sales
+    description: >
+      Returns sales information
+    schema: sap_adw
+
+    tables:
+
+      - name: salesorderheader
+        description: >
+          Main table with sales information.
+
+        tests:
+          - unique:
+              column_name: salesorderid
+
+        columns:
+          - name: salesorderid
+            description: >
+              Unique sales order identifier.
+            tests:
+              - not_null
+
+          - name: customerid
+            description: >
+              Customer identification code.
+            tests:
+              - not_null
+
+      - name: salesorderdetail
+        description: >
+          Table with detail of sales order.
+
+        tests:
+          - unique:
+              column_name: salesorderdetailid
+
+        columns:
+          - name: salesorderdetailid
+            description: >
+              Unique sales order detail identifier.
+            tests:
+              - not_null
+
+          - name: salesorderid
+            description: >
+              Sales order detail identification code.
+            tests:
+              - not_null
