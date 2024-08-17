@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_person_address
+    description: >
+      Table with information about address, city.
+
+    columns:
+      - name: id_address
+        description: >
+          Id of address.
+        tests:
+          - not_null
+          - unique
+      
+      - name: address_line_1
+        description: >
+          Address definition.
+        tests:
+          - not_null
