@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_sales_creditcard
+    description: >
+      Table with information about credit card, like type, number and expiration.
+
+    columns:
+      - name: id_creditcard
+        description: >
+          Id of creditcard.
+        tests:
+          - not_null
+          - unique
+      
+      - name: card_number
+        description: >
+          Number of creditcard.
+        tests:
+          - not_null
+      
+      - name: card_type
+        description: >
+          Type of credit card.
+        tests:
+          - not_null
+      
+      - name: expiration_month
+        description: >
+          Month of credit card expiration.
+        tests:
+          - not_null
+      
+      - name: expiration_year
+        description: >
+          Year of credit card expiration.
+        tests:
+          - not_null
