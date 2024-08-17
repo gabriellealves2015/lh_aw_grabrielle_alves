@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_sales_salesorderheadersalesreason
+    description: >
+      Table with information about relationship with sales order and sales reason.
+    
+    tests:
+      - unique:
+          column_name: id_sales_order || id_sales_reason
+
+    columns:
+      - name: id_sales_order
+        description: >
+          Id of sales order.
+        tests:
+          - not_null
+      
+      - name: id_sales_reason
+        description: >
+          Id sales reason.
+        tests:
+          - not_null
