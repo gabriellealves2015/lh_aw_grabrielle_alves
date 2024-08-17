@@ -49,3 +49,109 @@ sources:
               Sales order detail identification code.
             tests:
               - not_null
+
+      - name: creditcard
+        description: >
+          Table with credit card information, like type, number, expiration date.
+
+        tests:
+          - unique:
+              column_name: creditcardid
+
+        columns:
+          - name: creditcardid
+            description: >
+              Unique credit card identifier.
+            tests:
+              - not_null
+
+          - name: cardnumber
+            description: >
+              Credit card number.
+            tests:
+              - not_null
+      
+      - name: customer
+        description: >
+          Table with customer information, like person, store, and territory references.
+
+        tests:
+          - unique:
+              column_name: customerid
+
+        columns:
+          - name: customerid
+            description: >
+              Unique customer identifier.
+            tests:
+              - not_null
+
+          - name: territoryid
+            description: >
+              Territory identifier.
+            tests:
+              - not_null
+
+      - name: store
+        description: >
+          Table with store information, like name.
+
+        tests:
+          - unique:
+              column_name: businessentityid
+
+        columns:
+          - name: businessentityid
+            description: >
+              Unique store identifier.
+            tests:
+              - not_null
+
+          - name: name
+            description: >
+              Store name.
+            tests:
+              - not_null
+      
+      - name: salesreason
+        description: >
+          Table with sales reason information.
+
+        tests:
+          - unique:
+              column_name: salesreasonid
+
+        columns:
+          - name: salesreasonid
+            description: >
+              Unique sales reason identifier.
+            tests:
+              - not_null
+
+          - name: name
+            description: >
+              Sales reason name.
+            tests:
+              - not_null
+      
+      - name: salesorderheadersalesreason
+        description: >
+          Table with relationship with sales order and sales reason information.
+
+        tests:
+          - unique:
+              column_name: salesorderid || salesreasonid
+
+        columns:
+          - name: salesorderid
+            description: >
+              Sales order identifier.
+            tests:
+              - not_null
+
+          - name: salesreasonid
+            description: >
+              Sales reason identifier.
+            tests:
+              - not_null
+      
