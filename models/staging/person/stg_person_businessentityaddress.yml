@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: stg_person_businessentityaddress
+    description: >
+      Table with information about business entity like states linked to countries.
+    
+    tests:
+      - unique:
+          column_name: id_business_entity || id_address || id_address_type
+
+    columns:
+      - name: id_business_entity
+        description: >
+          Id of business entity.
+        tests:
+          - not_null
+      
+      - name: id_address
+        description: >
+          Address identification
+        tests:
+          - not_null
+      
+      - name: id_address_type
+        description: >
+          Address type identification
+        tests:
+          - not_null
