@@ -49,3 +49,51 @@ sources:
               Product description.
             tests:
               - not_null
+      
+      - name: productcategory
+        description: >
+          Category of products.
+
+        tests:
+          - unique:
+              column_name: productcategoryid
+
+        columns:
+          - name: productcategoryid
+            description: >
+              Unique product category identifier.
+            tests:
+              - not_null
+
+          - name: name
+            description: >
+              Product category name.
+            tests:
+              - not_null
+      
+      - name: productsubcategory
+        description: >
+          Subcategory of products.
+
+        tests:
+          - unique:
+              column_name: productsubcategoryid
+
+        columns:
+          - name: productsubcategoryid
+            description: >
+              Unique product subcategory identifier.
+            tests:
+              - not_null
+          
+          - name: productcategoryid
+            description: >
+              Product category identifier.
+            tests:
+              - not_null
+
+          - name: name
+            description: >
+              Product category name.
+            tests:
+              - not_null
