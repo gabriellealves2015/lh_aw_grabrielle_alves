@@ -18,6 +18,3 @@ models:
           Description of product.
         tests:
           - not_null
-
-
-      
