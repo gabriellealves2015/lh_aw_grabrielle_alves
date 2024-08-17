@@ -18,6 +18,3 @@ models:
           Id of sales order.
         tests:
           - not_null
-
-
-      
