@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_production_productsubcategory
+    description: >
+      Table product subcategory information.
+
+    columns:
+      - name: id_product_subcategory
+        description: >
+          Id of product subcategory.
+        tests:
+          - not_null
+          - unique
+      
+      - name: id_product_category
+        description: >
+          Id of product category.
+        tests:
+          - not_null
+      
+      - name: name
+        description: >
+          Name of product category.
+        tests:
+          - not_null
