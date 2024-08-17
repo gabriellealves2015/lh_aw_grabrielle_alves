@@ -32,11 +32,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
-  lh_aw_grabrielle_alves: # <-- Name of the project. If you renamed your project you have to change this as well
+  lh_aw_grabrielle_alves: 
     
     staging:
       +materialized: "{{ 'ephemeral' if target.name=='prod' else 'table' }}"
       +schema: staging
+    
+    intermediate:
+      +materialized: "{{ 'ephemeral' if target.name=='prod' else 'table' }}"
+      +schema: intermediate
 
     marts:
       +materialized: table
@@ -45,8 +49,7 @@ models:
         relation: true
         columns: true
 
-
 seeds:
-  lh_aw_grabrielle_alves: # <-- Name of the project. If you renamed your project you have to change this as well
+  lh_aw_grabrielle_alves: 
     sap_adventure_works:
       +schema: sap_adw
