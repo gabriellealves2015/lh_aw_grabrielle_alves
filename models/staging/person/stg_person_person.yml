@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_person_person
+    description: >
+      Table with information about person, like type and name.
+
+    columns:
+      - name: id_business_entity
+        description: >
+          Id of business entity.
+        tests:
+          - not_null
+          - unique
+      
+      - name: person_type
+        description: >
+          Type of person.
+        tests:
+          - not_null
