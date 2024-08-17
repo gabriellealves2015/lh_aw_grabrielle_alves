@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_person_stateprovince
+    description: >
+      Table with information about state province, like name, code, country code.
+
+    columns:
+      - name: id_state_province
+        description: >
+          Id of state province.
+        tests:
+          - not_null
+          - unique
+      
+      - name: state_province_code
+        description: >
+          Code of state province.
+        tests:
+          - not_null
+      
+      - name: country_region_code
+        description: >
+          Code of country region.
+        tests:
+          - not_null
