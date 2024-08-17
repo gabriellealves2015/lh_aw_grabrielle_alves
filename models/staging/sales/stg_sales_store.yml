@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_sales_store
+    description: >
+      Table with information about credit card, like type, number and expiration.
+
+    columns:
+      - name: id_business_entity
+        description: >
+          Id of business entity.
+        tests:
+          - not_null
+          - unique
+      
+      - name: name
+        description: >
+          Store name.
+        tests:
+          - not_null
