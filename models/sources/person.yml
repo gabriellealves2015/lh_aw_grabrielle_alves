@@ -1,0 +1,123 @@
+version: 2
+
+sources:
+  - name: person
+    description: >
+      Returns person information
+    schema: sap_adw
+
+    tables:
+
+      - name: person
+        description: >
+          Main table of person information.
+
+        tests:
+          - unique:
+              column_name: businessentityid
+
+        columns:
+          - name: businessentityid
+            description: >
+              Unique person identifier.
+            tests:
+              - not_null
+
+          - name: persontype
+            description: >
+              Person type.
+            tests:
+              - not_null
+      
+      - name: address
+        description: >
+          Address table information.
+
+        tests:
+          - unique:
+              column_name: addressid
+
+        columns:
+          - name: addressid
+            description: >
+              Unique address identifier.
+            tests:
+              - not_null
+
+          - name: addressline1
+            description: >
+              Address information.
+            tests:
+              - not_null
+      
+      - name: stateprovince
+        description: >
+          State province information like name, code, region of country code.
+
+        tests:
+          - unique:
+              column_name: stateprovinceid
+
+        columns:
+          - name: stateprovinceid
+            description: >
+              State province identifier.
+            tests:
+              - not_null
+
+          - name: stateprovincecode
+            description: >
+              Code of state province.
+            tests:
+              - not_null
+          
+          - name: countryregioncode
+            description: >
+              Code of country region.
+            tests:
+              - not_null
+  
+      - name: businessentityaddress
+        description: >
+          Business Entity information about states linked to countries.
+
+        tests:
+          - unique:
+              column_name: businessentityid || addressid || addresstypeid
+
+        columns:
+          - name: businessentityid
+            description: >
+              Business Entity identifier.
+            tests:
+              - not_null
+
+          - name: addressid
+            description: >
+              Address identification.
+            tests:
+              - not_null
+          
+          - name: addresstypeid
+            description: >
+              Address type identification.
+            tests:
+              - not_null
+
+      - name: countryregion
+        description: >
+          Country region information about country names and code.
+
+        columns:
+          - name: countryregioncode
+            description: >
+              Country region code.
+            tests:
+              - not_null
+              - unique
+
+          - name: name
+            description: >
+              Country name.
+            tests:
+              - not_null
