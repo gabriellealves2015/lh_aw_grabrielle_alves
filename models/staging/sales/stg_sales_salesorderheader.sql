@@ -20,7 +20,14 @@ with
 
             /* Information */
             , cast(revisionnumber as integer) as revision_number
-            , cast(status as integer) as status_number
+            , case
+                when cast(status as integer) = 1 then 'In process'
+                when cast(status as integer) = 2 then 'Approved'
+                when cast(status as integer) = 3 then 'Backordered'
+                when cast(status as integer) = 4 then 'Rejected'
+                when cast(status as integer) = 5 then 'Shipped'
+                else 'Cancelled'
+            end as status
             , cast(purchaseordernumber as string) as purchase_order_number
             , cast(accountnumber as string) as account_number
             , cast(subtotal as numeric) as subtotal
