@@ -18,6 +18,3 @@ models:
           Name of product.
         tests:
           - not_null
-
-
-      
