@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_sales_salesreason
+    description: >
+      Table with information about sales reason, like name and type.
+
+    columns:
+      - name: id_sales_reason
+        description: >
+          Id of sales reason.
+        tests:
+          - not_null
+          - unique
+      
+      - name: name
+        description: >
+          Sales reason name.
+        tests:
+          - not_null
+      
+      - name: reason_type
+        description: >
+          Sales reason type.
+        tests:
+          - not_null
