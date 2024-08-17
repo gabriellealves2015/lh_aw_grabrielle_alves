@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_person_countryregion
+    description: >
+      Table with information about country.
+
+    columns:
+      - name: country_region_code
+        description: >
+          Code of country region.
+        tests:
+          - not_null
+          - unique
+      
+      - name: name
+        description: >
+          Country name.
+        tests:
+          - not_null
