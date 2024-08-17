@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: stg_sales_customer
+    description: >
+      Table with customer information and person, store and territory references.
+
+    columns:
+      - name: id_customer
+        description: >
+          Id of customer.
+        tests:
+          - not_null
+          - unique
+      
+      - name: id_territory
+        description: >
+          Territory identifier.
+        tests:
+          - not_null
