@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: dim_employees
+    description: >
+      Dimension with employee information, like marital state, gender, job title.
+
+    columns:
+      - name: sk_employee
+        description: The surrogate key of the employee.
+        tests:
+          - unique
+          - not_null
+      
+      - name: id_sales_order
+        description: >
+          The natural key of the sales order.
+        tests:
+          - not_null
+
+      - name: id_sales_person
+        description: >
+          The natural key of the sales person.
+      
+      - name: first_name
+        description: >
+          The person first name.
+      
+      - name: middle_name
+        description: >
+          The person middle name.
+      
+      - name: last_name
+        description: >
+          The person last name.
+      
+      - name: full_name
+        description: >
+          The person complete name (first, middle and last).
+      
+      - name: job_title
+        description: >
+          The job title.
