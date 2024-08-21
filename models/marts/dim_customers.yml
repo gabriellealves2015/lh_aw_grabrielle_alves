@@ -1,0 +1,52 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: >
+      Dimension with customers information.
+
+    columns:
+      - name: sk_customer
+        description: The surrogate key of the customer.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_customer
+        description: >
+          The natural key of the customer.
+        tests:
+          - unique
+          - not_null
+      
+      - name: id_person
+        description: >
+          The natural key of person (id_business_entity).
+      
+      - name: id_store
+        description: >
+          The natural key of store (id_business_entity).
+      
+      - name: first_name
+        description: >
+          The person first name.
+      
+      - name: middle_name
+        description: >
+          The person middle name.
+      
+      - name: last_name
+        description: >
+          The person last name.
+      
+      - name: full_name
+        description: >
+          The person complete name (first, middle and last).
+      
+      - name: store_name
+        description: >
+          The store name associated with customer.
+      
+      - name: person_type
+        description: >
+          The customer classification (Store, Natural Person or Store Contact).
