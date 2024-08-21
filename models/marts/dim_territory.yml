@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: dim_territory
+    description: >
+      Dimension with territory information about country, city, states.
+
+    columns:
+      - name: sk_territory
+        description: The surrogate key of the ship address.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_ship_to_address
+        description: >
+          The natural key of the ship address.
+        tests:
+          - unique
+          - not_null
+      
+      - name: id_state_province
+        description: >
+          The natural key of the state province.
+        tests:
+          - not_null
+      
+      - name: id_territory
+        description: >
+          The natural key of the territory.
+        tests:
+          - not_null
+      
+      - name: city_name
+        description: >
+          The city name.
+      
+      - name: state_province_name
+        description: >
+          The name state province.
+      
+      - name: country_name
+        description: >
+          The country name.
