@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: int_sales_order_reason
+    description: >
+      Table that get sales order reason and type.
+
+    columns:
+      - name: id_sales_order
+        description: >
+          The natural key of the sales order.
+        tests:
+          - not_null
+      
+      - name: aggregated_id_sales_reason
+        description: >
+          Aggregation of multiple unique sales reason identifiers (generate unique entry).
+        tests:
+          - not_null
+      
+      - name: aggregated_reason_name
+        description: >
+          Aggregation of sales order reasons (generate single entry).
+        tests:
+          - not_null
+      
+      - name: aggregated_reason_type
+        description: >
+          Aggregation of sales order reason types (generate single entry).
+        tests:
+          - not_null
