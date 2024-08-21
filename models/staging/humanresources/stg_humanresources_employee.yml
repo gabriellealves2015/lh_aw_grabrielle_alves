@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_humanresources_employee
+    description: >
+      Table with information about employee like national identification number, birth date, hire date
+      marital status, sick leave hours.
+
+    columns:
+      - name: id_business_entity
+        description: >
+          Id of business unity.
+        tests:
+          - not_null
+          - unique
+      
+      - name: national_identification_number
+        description: >
+          National identification number.
+        tests:
+          - not_null
+      
+      - name: birth_date
+        description: >
+          Birth date.
+        tests:
+          - not_null
