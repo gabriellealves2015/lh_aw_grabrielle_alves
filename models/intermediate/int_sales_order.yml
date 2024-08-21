@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: int_sales_order
+    description: >
+      Table that get sales reason and type.
+
+    columns:
+      - name: id_sales_order
+        description: >
+          Natural key of sales order.
+        tests:
+          - not_null
+      
+      - name: unit_price
+        description: >
+          Unit price of each product.
+        tests:
+          - not_null
+      
+      - name: order_date
+        description: >
+          Date of issue of the order.
+        tests:
+          - not_null
