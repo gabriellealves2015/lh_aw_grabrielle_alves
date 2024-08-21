@@ -1,0 +1,36 @@
+version: 2
+
+sources:
+  - name: humanresources
+    description: >
+      Returns human resources information
+    schema: sap_adw
+
+    tables:
+
+      - name: employee
+        description: >
+          Main table of employee information.
+
+        tests:
+          - unique:
+              column_name: businessentityid
+
+        columns:
+          - name: businessentityid
+            description: >
+              Unique person identifier.
+            tests:
+              - not_null
+
+          - name: nationalidnumber
+            description: >
+              National identification number.
+            tests:
+              - not_null
+          
+          - name: birthdate
+            description: >
+              Birth date.
+            tests:
+              - not_null
