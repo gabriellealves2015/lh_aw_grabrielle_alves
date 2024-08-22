@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: dim_order_reasons
+    description: >
+      Dimension with sales order reason information, like name and type.
+
+    columns:
+      - name: sk_order_reason
+        description: The surrogate key of the sales order reason.
+        tests:
+          - unique
+          - not_null
+
+      - name: id_sales_order
+        description: >
+          The natural key of the sales order.
+        tests:
+          - not_null
+      
+      - name: aggregated_id_sales_reason
+        description: >
+          Aggregation of multiple unique sales reason identifiers (generate unique entry).
+        tests:
+          - not_null
+      
+      - name: aggregated_reason_name
+        description: >
+          Aggregation of sales order reasons (generate single entry).
+        tests:
+          - not_null
+      
+      - name: aggregated_reason_type
+        description: >
+          Aggregation of sales order reason types (generate single entry).
+        tests:
+          - not_null
