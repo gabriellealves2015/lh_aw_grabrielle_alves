@@ -25,16 +25,5 @@ with
             on saord.id_sales_reason = sare.id_sales_reason
     )
 
-    , agg_sales_reason as (
-        select
-            id_sales_order
-            , string_agg(id_sales_reason, ', ') as aggregated_id_sales_reason
-            , string_agg(reason_name, ', ') as aggregated_reason_name
-            , string_agg(reason_type, ', ') as aggregated_reason_type
-        from transformation
-        group by
-            id_sales_order
-    )
-
-    select *
-    from agg_sales_reason
+select *
+from transformation

@@ -12,20 +12,20 @@ models:
         tests:
           - not_null
       
-      - name: aggregated_id_sales_reason
+      - name: id_sales_reason
         description: >
-          Aggregation of multiple unique sales reason identifiers (generate unique entry).
+          Sales reason natural key.
         tests:
           - not_null
       
-      - name: aggregated_reason_name
+      - name: reason_name
         description: >
-          Aggregation of sales order reasons (generate single entry).
+          Sales order reason.
         tests:
           - not_null
       
-      - name: aggregated_reason_type
+      - name: reason_type
         description: >
-          Aggregation of sales order reason types (generate single entry).
+          Sales order reason type.
         tests:
           - not_null
