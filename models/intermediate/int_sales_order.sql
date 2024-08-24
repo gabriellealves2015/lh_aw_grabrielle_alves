@@ -28,7 +28,15 @@ with
         from {{ ref('stg_sales_salesorderdetail') }}
     )
 
-    , transformation as (
+    , count_items_in_each_order as (
+        select
+            id_sales_order
+            , count(id_sales_order_detail) as total_items
+        from sales_order_detail
+        group by id_sales_order
+    )
+
+    , join_tables as (
         select
             saor.id_sales_order
             , saorde.id_sales_order_detail
@@ -48,11 +56,36 @@ with
             , saorde.order_quantity
             , saorde.unit_price
             , saorde.unit_price_discount
-            , (saorde.unit_price * saorde.order_quantity * (1 - unit_price_discount)) as total
+            , coun.total_items
         from sales_order as saor
         left join sales_order_detail as saorde 
             on saor.id_sales_order = saorde.id_sales_order
+        left join count_items_in_each_order as coun
+            on coun.id_sales_order = saor.id_sales_order
     )
 
-    select *
-    from transformation
+    , transformation as (
+        select
+            id_sales_order
+            , id_sales_order_detail
+            , id_customer
+            , id_sales_person
+            , id_territory
+            , id_creditcard
+            , id_ship_to_address
+            , id_product
+            , status
+            , (tax_amt / total_items) as tax
+            , (freight / total_items) as freight
+            , (total_due / total_items) as due
+            , is_online
+            , order_date
+            , order_quantity
+            , unit_price
+            , unit_price_discount
+            , (unit_price * order_quantity * (1 - unit_price_discount)) as total
+        from join_tables
+    )
+
+select *
+from transformation
