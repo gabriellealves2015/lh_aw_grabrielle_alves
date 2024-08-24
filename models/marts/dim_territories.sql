@@ -9,6 +9,14 @@ with
         from {{ ref('stg_person_stateprovince') }}
     )
 
+    , territory as (
+        select
+            id_territory
+            , territory_name
+            , territory_group
+        from {{ ref('stg_sales_territory') }}
+    )
+
     , country_region as (
         select
             country_region_code
@@ -38,6 +46,8 @@ with
             , address.city_name
             , state_province.state_province_name
             , country_region.country_name
+            , territory.territory_name
+            , territory.territory_group
         from ship_address
         left join address
             on ship_address.id_ship_to_address = address.id_address
@@ -45,6 +55,8 @@ with
             on state_province.id_state_province = address.id_state_province
         left join country_region
             on country_region.country_region_code = state_province.country_region_code
+        left join territory
+            on territory.id_territory = state_province.id_territory
     )
     
     , transformation as (
@@ -56,6 +68,8 @@ with
             , city_name
             , state_province_name
             , country_name
+            , territory_name
+            , territory_group
         from join_tables
     )
 

@@ -42,3 +42,11 @@ models:
       - name: country_name
         description: >
           The country name.
+      
+      - name: territory_name
+        description: >
+          The territory name.
+      
+      - name: territory_group
+        description: >
+          The territory group.
