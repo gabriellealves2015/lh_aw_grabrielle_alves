@@ -10,7 +10,7 @@ with
 
     , transformation as (
         select
-            {{ dbt_utils.generate_surrogate_key(['id_sales_order']) }} as sk_order_reason
+            {{ dbt_utils.generate_surrogate_key(['id_sales_order', 'id_sales_reason']) }} as sk_order_reason
             , id_sales_order
             , id_sales_reason
             , reason_name
