@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_sales_territory
+    description: >
+      Table with information sales territory, like name, group, code.
+
+    columns:
+      - name: id_territory
+        description: >
+          Id of territory.
+        tests:
+          - not_null
+          - unique
+      
+      - name: territory_name
+        description: >
+          Territory name.
+        tests:
+          - not_null
+      
+      - name: territory_group
+        description: >
+          Territory group.
+        tests:
+          - not_null
