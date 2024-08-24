@@ -12,10 +12,6 @@ models:
           - unique
           - not_null
 
-      - name: fk_order_reason
-        description: >
-          The foreign key of the order reasons dimension.
-
       - name: fk_product
         description: >
           The foreign key of the products dimension.
@@ -72,21 +68,17 @@ models:
         description: >
           The status of order like: In process, Approved, Backordered, Rejected, Shipped.
       
-      - name: subtotal
+      - name: tax
         description: >
-          Sales subtotal.
-      
-      - name: tax_amt
-        description: >
-          Tax amount.
+          Tax rate distributed per item.
       
       - name: freight
         description: >
-          Shipping cost.
+          Shipping cost distributed per item.
         
-      - name: total_due
+      - name: due
         description: >
-          Total due from customer, computed as: subtotal + tax_amt + freight.
+          Due from customer, computed as: subtotal + tax_amt + freight, distributed per item.
       
       - name: is_online
         description: >

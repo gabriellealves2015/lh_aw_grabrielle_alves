@@ -20,14 +20,6 @@ with
         from {{ ref('dim_customers') }} 
     )
 
-    , order_reasons as (
-        select
-            sk_order_reason
-            , id_sales_order
-            , aggregated_reason_name
-        from {{ ref('dim_order_reasons') }}
-    )
-
     , creditcards as (
         select
             sk_creditcard
@@ -54,10 +46,9 @@ with
             , id_ship_to_address
             , id_sales_order_detail
             , status
-            , subtotal
-            , tax_amt
+            , tax
             , freight
-            , total_due
+            , due
             , is_online
             , order_date
             , order_quantity
@@ -69,8 +60,7 @@ with
 
     , join_tables as (
         select
-            orre.sk_order_reason
-            , saor.id_sales_order
+            saor.id_sales_order
             , saor.id_sales_order_detail
             , pro.sk_product
             , saor.id_product
@@ -83,10 +73,9 @@ with
             , emp.sk_employee
             , saor.id_sales_person
             , saor.status
-            , saor.subtotal
-            , saor.tax_amt
+            , saor.tax
             , saor.freight
-            , saor.total_due
+            , saor.due
             , saor.is_online
             , saor.order_date
             , saor.order_quantity
@@ -96,8 +85,6 @@ with
         from sales_orders as saor
         left join products as pro 
             on pro.id_product = saor.id_product 
-        left join order_reasons as orre
-            on orre.id_sales_order = saor.id_sales_order
         left join customers as cus
             on cus.id_customer = saor.id_customer
         left join creditcards as cred
@@ -112,7 +99,6 @@ with
         select
             {{ dbt_utils.generate_surrogate_key(['id_sales_order', 'id_sales_order_detail']) }} as sk_order_details
             , id_sales_order
-            , sk_order_reason as fk_order_reason
             , sk_product as fk_product
             , id_product
             , sk_customer as fk_customer
@@ -124,10 +110,9 @@ with
             , sk_employee as fk_employee
             , id_sales_person
             , status
-            , subtotal
-            , tax_amt
+            , tax
             , freight
-            , total_due
+            , due
             , is_online
             , order_date
             , order_quantity
