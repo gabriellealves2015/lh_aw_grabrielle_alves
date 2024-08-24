@@ -155,3 +155,23 @@ sources:
             tests:
               - not_null
       
+      - name: salesterritory
+        description: >
+          Table with sales territory lookup information.
+
+        tests:
+          - unique:
+              column_name: territoryid
+
+        columns:
+          - name: territoryid
+            description: >
+              Territory identifier.
+            tests:
+              - not_null
+
+          - name: name
+            description: >
+              Name of territory.
+            tests:
+              - not_null
