@@ -5,6 +5,8 @@ with
             , id_customer
             , id_sales_person
             , id_territory
+            , id_creditcard
+            , id_ship_to_address
             , status
             , subtotal
             , tax_amt
@@ -29,9 +31,12 @@ with
     , transformation as (
         select
             saor.id_sales_order
+            , saorde.id_sales_order_detail
             , saor.id_customer
             , saor.id_sales_person
             , saor.id_territory
+            , saor.id_creditcard
+            , saor.id_ship_to_address
             , saorde.id_product
             , saor.status
             , saor.subtotal

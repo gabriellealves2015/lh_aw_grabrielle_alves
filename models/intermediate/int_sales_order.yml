@@ -12,6 +12,12 @@ models:
         tests:
           - not_null
       
+      - name: id_sales_order_detail
+        description: >
+          Natural key of sales order detail.
+        tests:
+          - not_null
+      
       - name: unit_price
         description: >
           Unit price of each product.

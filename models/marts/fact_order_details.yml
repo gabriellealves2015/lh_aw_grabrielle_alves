@@ -1,0 +1,113 @@
+version: 2
+
+models:
+  - name: fact_order_details
+    description: >
+      Fact table with measurements corresponding to orders placed, such as total sold, quantity of items, unit price.
+
+    columns:
+      - name: sk_order_details
+        description: The surrogate key of the fact order detail.
+        tests:
+          - unique
+          - not_null
+
+      - name: fk_order_reason
+        description: >
+          The foreign key of the order reasons dimension.
+
+      - name: fk_product
+        description: >
+          The foreign key of the products dimension.
+        tests:
+          - not_null
+      
+      - name: id_product
+        description: >
+          The natural key of the products.
+        tests:
+          - not_null
+
+      - name: fk_customer
+        description: >
+          The foreign key of the customers dimension.
+        tests:
+          - not_null
+      
+      - name: id_customer
+        description: >
+          The natural key of the customers.
+        tests:
+          - not_null
+      
+      - name: fk_creditcard
+        description: >
+          The foreign key of the creditcards dimension.
+
+      - name: id_creditcard
+        description: >
+          The natural key of the creditcards.
+
+      - name: fk_territory
+        description: >
+          The foreign key of the territories dimension.
+        tests:
+          - not_null
+
+      - name: id_ship_to_address
+        description: >
+          The natural key of the ship address.
+        tests:
+          - not_null
+      
+      - name: fk_employee
+        description: >
+          The foreign key of the employees dimension.
+      
+      - name: id_sales_person
+        description: >
+          The natural key of the person (id_business_unity).
+
+      - name: status
+        description: >
+          The status of order like: In process, Approved, Backordered, Rejected, Shipped.
+      
+      - name: subtotal
+        description: >
+          Sales subtotal.
+      
+      - name: tax_amt
+        description: >
+          Tax amount.
+      
+      - name: freight
+        description: >
+          Shipping cost.
+        
+      - name: total_due
+        description: >
+          Total due from customer, computed as: subtotal + tax_amt + freight.
+      
+      - name: is_online
+        description: >
+          Information if order was placed by sales person or online by customer.
+      
+      - name: order_date
+        description: >
+          The date when sales order was created.
+      
+      - name: order_quantity
+        description: >
+          Quantity ordered per product.
+      
+      - name: unit_price
+        description: >
+          Selling price of a single product.
+      
+      - name: unit_price_discount
+        description: >
+          Discount amount.
+      
+      - name: total
+        description: >
+          Amount calculated by product: unit_price * order_quantity * (1 - unit_price_discount)
