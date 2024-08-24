@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_territory
+  - name: dim_territories
     description: >
       Dimension with territory information about country, city, states.
 
