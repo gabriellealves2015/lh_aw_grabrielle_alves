@@ -3,6 +3,7 @@ with
         select
             id_sales_order
             , id_sales_person
+            , is_online
         from {{ ref('stg_sales_salesorderheader') }}
     )
 
@@ -32,6 +33,7 @@ with
             , person.last_name
             , person.full_name
             , employee.job_title
+            , sales_order.is_online
         from sales_order
         left join person
             on sales_order.id_sales_person = person.id_business_entity
@@ -48,6 +50,11 @@ with
                 when first_name is null 
                     and middle_name is null 
                     and last_name is null
+                    and is_online = true
+                    then 'On-line'
+                when first_name is null 
+                    and middle_name is null 
+                    and last_name is null
                     then 'Not informed'
                 else
                     first_name
@@ -55,11 +62,16 @@ with
             , middle_name
             , last_name
             , case
-                when trim(full_name) = '' then 'Not informed'
+                when full_name is null
+                    and is_online = true
+                    then 'On-line'
+                when trim(full_name) = '' 
+                    then 'Not informed'
                 else
                     full_name
             end as full_name
             , job_title
+            , is_online
         from join_tables
     )
 
