@@ -83,9 +83,33 @@ with
             , order_quantity
             , unit_price
             , unit_price_discount
-            , (unit_price * order_quantity * (1 - unit_price_discount)) as total
+            , (unit_price * order_quantity * (1 - unit_price_discount)) as subtotal
         from join_tables
     )
 
+    , calculation as (
+        select
+            id_sales_order
+            , id_sales_order_detail
+            , id_customer
+            , id_sales_person
+            , id_territory
+            , id_creditcard
+            , id_ship_to_address
+            , id_product
+            , status
+            , tax
+            , freight
+            , due
+            , is_online
+            , order_date
+            , order_quantity
+            , unit_price
+            , unit_price_discount
+            , subtotal
+            , (subtotal + tax + freight) as total
+        from transformation
+    )
+
 select *
-from transformation
+from calculation
