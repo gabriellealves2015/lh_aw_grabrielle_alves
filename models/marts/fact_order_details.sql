@@ -39,10 +39,19 @@ with
         select
             id_sales_order
             , id_customer
-            , id_sales_person
+            , case
+                /* Define as on-line */
+                when id_sales_person is null and is_online = true then '9999998'
+                
+                /* Define as not informed */
+                when id_sales_person is null and is_online = false then '9999999'
+
+                else id_sales_person
+            end id_sales_person
             , id_territory
-            , id_product
-            , id_creditcard
+            
+            {{ generate_not_informed_case(['id_product', 'id_creditcard']) }}
+
             , id_ship_to_address
             , id_sales_order_detail
             , status
@@ -54,6 +63,7 @@ with
             , order_quantity
             , unit_price
             , unit_price_discount
+            , subtotal
             , total
         from {{ ref('int_sales_order') }}
     )
@@ -81,6 +91,7 @@ with
             , saor.order_quantity
             , saor.unit_price
             , saor.unit_price_discount
+            , saor.subtotal
             , saor.total
         from sales_orders as saor
         left join products as pro 
@@ -98,6 +109,7 @@ with
     , transformation as (
         select
             {{ dbt_utils.generate_surrogate_key(['id_sales_order', 'id_sales_order_detail']) }} as sk_order_details
+            , {{ dbt_utils.generate_surrogate_key(['id_sales_order']) }} as sk_sales_order            
             , id_sales_order
             , sk_product as fk_product
             , id_product
@@ -118,6 +130,7 @@ with
             , order_quantity
             , unit_price
             , unit_price_discount
+            , subtotal
             , total
         from join_tables
     )

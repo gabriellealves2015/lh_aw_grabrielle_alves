@@ -11,6 +11,11 @@ models:
         tests:
           - unique
           - not_null
+      
+      - name: sk_sales_order
+        description: The surrogate key of the sales order.
+        tests:
+          - not_null
 
       - name: fk_product
         description: >
@@ -100,6 +105,10 @@ models:
         description: >
           Discount amount.
       
-      - name: total
+      - name: subtotal
         description: >
           Amount calculated by product: unit_price * order_quantity * (1 - unit_price_discount)
+      
+      - name: total
+        description: >
+          Amount calculated by product: subtotal + tax distributed per product + freight distributed per product
