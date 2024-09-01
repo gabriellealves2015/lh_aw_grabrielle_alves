@@ -2,9 +2,16 @@ with
     product as (
         select
             id_product
-            , id_product_subcategory
+
+            {{ generate_not_informed_case(['id_product_subcategory']) }}
+            
             , name as product_name
         from {{ ref('stg_production_product') }}
+
+        /* Define not informed */
+        {% set product_fields = ['id_product', 'id_product_subcategory', 'product_name'] -%}
+        {{- generate_not_informed_union(product_fields, ['id_product', 'id_product_subcategory']) }}
+
     )
 
     , category as (
@@ -12,14 +19,24 @@ with
             id_product_category
             , name as category_name
         from {{ ref('stg_production_productcategory') }}
+
+        /* Define not informed */
+        {{ generate_not_informed_union(['id_product_subcategory', 'category_name'], ['id_product_subcategory']) }}
+
     )
 
     , subcategory as (
         select
             id_product_subcategory
-            , id_product_category
+            
+            {{ generate_not_informed_case(['id_product_category']) }}
+            
             , name as subcategory_name
         from {{ ref('stg_production_productsubcategory') }}
+
+        /* Define not informed */
+        {{ generate_not_informed_union(['id_product_subcategory', 'id_product_category', 'subcategory_name'], ['id_product_subcategory', 'id_product_category']) }}
+
     )
 
     , join_tables as (

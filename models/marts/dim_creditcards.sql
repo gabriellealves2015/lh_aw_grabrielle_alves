@@ -4,6 +4,9 @@ with
             id_creditcard
             , card_type
         from {{ ref('stg_sales_creditcard') }}
+        
+        /* Define not informed */
+        {{ generate_not_informed_union(['id_creditcard', 'card_type'], ['id_creditcard']) }}
     )
 
     , transformation as (
