@@ -11,6 +11,11 @@ models:
         tests:
           - unique
           - not_null
+      
+      - name: fk_sales_order
+        description: The foreign key of the sales order.
+        tests:
+          - not_null
 
       - name: id_sales_order
         description: >
