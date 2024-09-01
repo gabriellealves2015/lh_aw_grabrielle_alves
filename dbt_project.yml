@@ -45,6 +45,13 @@ models:
       +persist_docs:
         relation: true
         columns: true
+    
+    aggregated:
+      +materialized: table
+      +schema: aggregated
+      +persist_docs:
+        relation: true
+        columns: true
 
 seeds:
   lh_aw_grabrielle_alves:
