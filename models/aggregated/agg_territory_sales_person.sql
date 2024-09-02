@@ -133,8 +133,8 @@ with
             , due
             , is_online
             , case
-                when is_online = True then 'Physical'
-                else 'On-line'
+                when is_online = True then 'On-line'
+                else 'Physical'
             end as order_type
             , order_date
             , order_quantity
